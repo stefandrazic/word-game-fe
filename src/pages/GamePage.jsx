@@ -42,7 +42,9 @@ export default function GamePage() {
           Check word
         </Button>
       </Form>
-      {score && <Alert variant="success">Good job! Score is: {score} 😊</Alert>}
+      {score && (
+        <Alert variant="success">Good job! Your score is: {score} 😊</Alert>
+      )}
       {error && (
         <Alert variant="danger">
           That word seems to not exist in english dictionary. Please try again.

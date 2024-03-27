@@ -10,7 +10,7 @@ function NavbarComponent() {
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
         <Navbar.Brand as={Link} to={"/game"}>
-          React-Bootstrap
+          Word game
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -18,8 +18,8 @@ function NavbarComponent() {
             <Nav.Link as={Link} to={"/game"}>
               Game
             </Nav.Link>
-            <Nav.Link as={Link} to={"/game"}>
-              Leadboard
+            <Nav.Link as={Link} to={"/leaderboard"}>
+              Leaderboard
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
