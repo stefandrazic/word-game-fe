@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, Button, Container, Form } from "react-bootstrap";
 import GameService from "../services/game.service";
 
@@ -7,18 +7,28 @@ export default function GamePage() {
   const [score, setScore] = useState("");
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    const storedWordScores = localStorage.getItem("wordScores");
+  }, []);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const response = await GameService.checkWord(data);
       if (response) {
-        setData({ ...data, word: "" });
-        if (response.score) setScore(response.score);
+        if (response.score) {
+          setScore(response.score);
+          const existingWords =
+            JSON.parse(localStorage.getItem("wordsScore")) || {};
+          existingWords[data.word.toLowerCase()] = response.score;
+          localStorage.setItem("wordsScore", JSON.stringify(existingWords));
+        }
         if (response.error) setError(response.error);
+        setData({ ...data, word: "" });
       }
-
-      console.log(response);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
